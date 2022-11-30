@@ -379,7 +379,7 @@ def main():
                     get_data_xml()
                     restart()
                 elif n == 5:
-                    creating_data()
+                    creating_data_xml()
                     restart()
                 elif n == 6:
                     remove_database_xml()
