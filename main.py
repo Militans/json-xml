@@ -291,7 +291,8 @@ def change_element_xml(elem, param, new_param):
             add_element_xml(temp_animal)
         else:
             print("Uncorrected param")
-            return
+            print("only [name], [country], [color]")
+
     except FileNotFoundError:
         print("Have no no database")
     except AttributeError:
@@ -385,11 +386,12 @@ def main():
                     remove_database_xml()
                     restart()
                 elif n == 7:
-                    print("Please enter the name of predator and the method\n",
+                    print("Please enter the name of bird and the method\n",
                           "you can choose three methods:\n",
-                          "[move], [hunt] and [sleep]")
+                          "[fly], [get_egg] and [sound]")
                     inp = [str(d) for d in input().split()]
                     methods_xml(inp[0], inp[1])
+                    restart()
             except ValueError as e:
                 print(e)
                 restart()
