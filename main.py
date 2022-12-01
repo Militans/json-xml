@@ -105,7 +105,7 @@ def creating_data():
     if os.path.exists("Lab_1.json"):
         print("The database is already exists")
     else:
-        a = {"Predators": {}}
+        a = {"Predators": []}
         with open("Lab_1.json", "w") as file:
             json.dump(a, file)
         print("Success!")
@@ -127,7 +127,7 @@ def remove_element(name):
     try:
         with open("Lab_1.json", 'r', encoding='utf-8') as inp:
             js = json.load(inp)
-        del js["Predators"][name]
+        js["Predators"] = [pred for pred in js["Predators"] if pred['name'] != name]
         with open("Lab_1.json", 'w') as output:
             json.dump(js, output, indent=4)
     except FileNotFoundError as err:
@@ -140,7 +140,7 @@ def add_element(predator):
     try:
         with open("Lab_1.json", 'r', encoding='utf-8') as inp:
             js = json.load(inp)
-        js["Predators"][predator.name] = predator.to_json()
+        js["Predators"].append(predator.to_json())
         with open("Lab_1.json", 'w') as output:
             json.dump(js, output, indent=4)
     except FileNotFoundError as e:
