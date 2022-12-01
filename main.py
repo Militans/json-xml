@@ -91,14 +91,24 @@ class Bird(Animal):
     def soud(self): print("uwu")
 
 
+trying = 0
+
+
 def restart():
+    global trying
     n = input("Do you want anything else? yes/no\n")
     if n == "yes":
         main()
     elif n == "no":
         print("goodbye")
     else:
-        print("only [yes] or [no]")
+        if trying < 2:
+            print("only [yes] or [no]")
+            trying += 1
+            restart()
+        else:
+            print("Learn english!")
+            return
 
 
 def creating_data():
@@ -390,8 +400,12 @@ def main():
                           "you can choose three methods:\n",
                           "[fly], [get_egg] and [sound]")
                     inp = [str(d) for d in input().split()]
-                    methods_xml(inp[0], inp[1])
-                    restart()
+                    try:
+                        methods_xml(inp[0], inp[1])
+                        restart()
+                    except IndexError:
+                        print("You haven't method or element")
+                        restart()
             except ValueError as e:
                 print(e)
                 restart()
